@@ -1,0 +1,60 @@
+@import "../../app.scss";
+
+.navbar {
+  height: 100px;
+  
+  @include mobile {
+    overflow: hidden;
+  }
+
+  .wrapper {
+    max-width: 1366px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 80%;
+
+
+    @include mobile {
+      justify-content: flex-end;
+      padding:7px;
+      width: 95%;
+      overflow: hidden;
+    }
+
+    span {
+      font-weight: bold;
+      color: #c8c8c8;
+
+      @include mobile {
+        font-size: 9px;
+        padding: 57%;
+        position: absolute;
+        overflow: hidden;
+      }
+    }
+
+    .social {
+      display: flex;
+      gap: 50px;
+
+      @include mobile {
+        z-index: 999;
+        overflow: hidden;
+      }
+
+
+
+      img {
+        width: 30px;
+        height: 30px;
+       
+        @include mobile {
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
