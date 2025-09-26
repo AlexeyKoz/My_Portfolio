@@ -1,60 +1,96 @@
 @import "../../app.scss";
 
 .navbar {
-  height: 100px;
-  
-  @include mobile {
-    overflow: hidden;
-  }
-
-  .wrapper {
-    max-width: 1366px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    width: 80%;
-
+    height: 100px;
+    position: relative;
+    z-index: 10;
 
     @include mobile {
-      justify-content: flex-end;
-      padding:7px;
-      width: 95%;
-      overflow: hidden;
+        height: 60px;
+        overflow: hidden;
     }
 
-    span {
-      font-weight: bold;
-      color: #c8c8c8;
+    .wrapper {
+        max-width: 1366px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        width: 90%;
+        padding: 0 20px;
 
-      @include mobile {
-        font-size: 9px;
-        padding: 57%;
-        position: absolute;
-        overflow: hidden;
-      }
-    }
-
-    .social {
-      display: flex;
-      gap: 50px;
-
-      @include mobile {
-        z-index: 999;
-        overflow: hidden;
-      }
-
-
-
-      img {
-        width: 30px;
-        height: 30px;
-       
         @include mobile {
-          overflow: hidden;
+            justify-content: flex-end;
+            padding: 0 15px;
+            width: 100%;
         }
-      }
+
+        span {
+            font-weight: 600;
+            font-size: 16px;
+            background: $accent-gradient;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+
+            @include mobile {
+                display: none; // Hide text on mobile to avoid overlap
+            }
+        }
+
+        .social {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            @include mobile {
+                gap: 15px;
+                z-index: 999;
+            }
+
+            >div {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: $card-bg;
+                backdrop-filter: blur(10px);
+                border: 1px solid $border-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background: rgba(102, 126, 234, 0.1);
+                    border-color: rgba(102, 126, 234, 0.3);
+                    transform: translateY(-3px);
+                    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+                }
+
+                @include mobile {
+                    width: 35px;
+                    height: 35px;
+                }
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    transition: all 0.3s ease;
+                    filter: invert(1) brightness(2);
+
+                    @include mobile {
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+
+                &:hover img {
+                    opacity: 1;
+                    transform: scale(1.1);
+                }
+            }
+        }
     }
-  }
 }

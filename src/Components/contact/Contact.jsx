@@ -29,17 +29,17 @@ const Contact = () => {
         e.preventDefault();
 
         emailjs
-        .sendForm('service_j2odtvl', 'template_wvw8wr8', formRef.current, {
-            publicKey: '8RZ2BZVV_pAXBaezG',
-        })
-        .then(
-            (result) => {
-                setSuccess(true);
-            },
-            (error) => {
-                setError(true);
-            });
-};
+            .sendForm('service_j2odtvl', 'template_wvw8wr8', formRef.current, {
+                publicKey: 'key',
+            })
+            .then(
+                (result) => {
+                    setSuccess(true);
+                },
+                (error) => {
+                    setError(true);
+                });
+    };
 
     return (
         <div className="backGround">
@@ -86,8 +86,8 @@ const Contact = () => {
 
                         <motion.button whileHover={{ scale: 1.02, color: "#575757" }}>Submit</motion.button>
 
-                        {error && "Erorr"}
-                        {success && "Success"}
+                        {error && "Error sending message. Please try again."}
+                        {success && "Message sent successfully!"}
 
                     </motion.form>
 

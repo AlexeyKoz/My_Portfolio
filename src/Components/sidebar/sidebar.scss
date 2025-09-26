@@ -1,64 +1,117 @@
 @import "../../app.scss";
 
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
-  color: hsl(0, 0%, 0%);
-  z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
 
-
-
-
-  .bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 350px;
-    background: #ffffff;
-    z-index: 999;
-
-    @include mobile {
-      width: 160px;
-    }
-
-
-    .links {
-
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-
-      a {
-        font-size: 50px;
+    .bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 350px;
+        background: rgba(15, 15, 30, 0.98);
+        backdrop-filter: blur(20px);
+        z-index: 999;
+        border-right: 1px solid $border-color;
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
 
         @include mobile {
-          font-size: 20px;
+            width: 200px;
+
+            // Hide the sidebar circle effect on mobile by making it invisible when closed
+            &[style*="circle(30px"] {
+                opacity: 0 !important;
+                pointer-events: none;
+            }
+
+            // Speed up the animation on mobile by overriding the delay
+            &[style*="circle(1200px"] {
+                transition: transform 0.3s ease, opacity 0.3s ease !important;
+            }
         }
 
-      }
+        .links {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+
+            a {
+                font-size: 32px;
+                font-weight: 600;
+                color: $text-secondary;
+                transition: all 0.3s ease;
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    width: 0;
+                    height: 3px;
+                    background: $accent-gradient;
+                    transition: width 0.3s ease;
+                }
+
+                &:hover {
+                    color: $text-primary;
+                    transform: translateX(10px);
+
+                    &::after {
+                        width: 100%;
+                    }
+                }
+
+                @include mobile {
+                    font-size: 20px;
+                }
+            }
+        }
     }
-  }
 
-  button {
+    button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        background: $card-bg;
+        backdrop-filter: blur(10px);
+        border: 1px solid $border-color;
+        cursor: pointer;
+        z-index: 1002;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    position: fixed;
-    top: 25px;
-    left: 25px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-     z-index: 999;
-  }
+        @include mobile {
+            width: 40px;
+            height: 40px;
+            top: 10px;
+            left: 10px;
+        }
+
+        &:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: rotate(90deg);
+        }
+
+        svg {
+            path {
+                stroke: $text-primary;
+            }
+        }
+    }
 }

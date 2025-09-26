@@ -1,150 +1,232 @@
 @import "../../app.scss";
 
 .backGround {
-
-  background: linear-gradient(180deg, #0042ad, #111132);
-  height: 100%;
-  margin: auto;
-  display:flex;
-  align-items: center;
-  
-
-  @include mobile {
-    overflow: hidden;
+    min-height: 100vh;
+    background: $primary-dark;
     position: relative;
-  }
-
-  .contact {
-    height: 100%;
-    max-width: 1366px;
-    margin: auto;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: center;
 
-    @include mobile {
-      max-width: 738px;
-      width: 100%;
-      padding: 15px;
-      flex-direction: column;
-      overflow: hidden;
+    // Animated gradient background
+    &::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at top left, rgba(0, 217, 255, 0.1) 0%, transparent 40%),
+            radial-gradient(circle at bottom right, rgba(102, 126, 234, 0.1) 0%, transparent 40%);
+        animation: rotate 20s linear infinite;
+    }
+}
+
+.contact {
+    max-width: 1200px;
+    width: 100%;
+    padding: 80px 20px;
+    display: flex;
+    gap: 80px;
+    position: relative;
+    z-index: 1;
+
+    @include tablet {
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px 20px;
     }
 
 
     .textContainer {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-      @include mobile {
-        gap: 30px;
-        text-align: center;
-        align-items: center;
-        margin-top: 40px;
-        overflow: hidden;
-      }
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            background: $accent-gradient;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+            line-height: 1.2;
 
-
-      h1 {
-        font-size: 80px;
-        line-height: 88px;
-
-        @include mobile {
-          font-size: 25px;
+            @include mobile {
+                font-size: 30px;
+                text-align: center;
+                margin-bottom: 25px;
+            }
         }
-      }
 
+        .item {
+            background: $card-bg;
+            backdrop-filter: blur(10px);
+            border: 1px solid $border-color;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
 
-      span {
-        font-weight: 300;
-        color: #c8c8c8;
-        font-size: 20px;
+            &:hover {
+                border-color: rgba(102, 126, 234, 0.3);
+                transform: translateY(-5px);
+                box-shadow: 0 10px 40px rgba(102, 126, 234, 0.1);
+            }
 
-        @include mobile {
-          font-size: 15px;
-          overflow: hidden;
+            h2 {
+                font-size: 20px;
+                color: $accent-color;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+
+            span {
+                font-size: 24px;
+                color: $text-primary;
+                font-weight: 300;
+                letter-spacing: 0.5px;
+            }
+
+            @include mobile {
+                text-align: center;
+            }
         }
-      }
-    }
-
-    
-    h2 {
-      color: #c8c8c8;
-      font-size: 25px;
-
-      @include mobile {
-        font-size: 15px;
-        overflow: hidden;
-      }
     }
 
     .formContainer {
-      flex: 1;
-      position: relative;
-
-
-      @include mobile {
-        padding: 90px;
-        width: 85%;
-        position: absolute;
-        margin-top: 170px;
-        overflow: hidden;
-      }
-
-      .phoneSvg {
-        stroke: #cec406;
-        position: absolute;
-        margin: auto;
-        z-index: 999;
-      }
-
-
-
-      form {
+        flex: 1;
+        position: relative;
         display: flex;
-        flex-direction: column;
-        gap: 15px;
-        
+        align-items: center;
+        justify-content: center;
 
-        @include mobile {
-          gap: 10px;
-          overflow: hidden;
+
+        .phoneSvg {
+            position: absolute;
+            margin: auto;
+
+            svg {
+                width: 400px;
+                height: 400px;
+
+                @include mobile {
+                    width: 250px;
+                    height: 250px;
+                }
+
+                path {
+                    stroke: $accent-color;
+                    stroke-width: 0.5;
+                    fill: none;
+                    filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.5));
+                }
+            }
         }
 
-        input,
-        textarea {
-          padding: 10px;
-          background-color: transparent;
-          border: 1px solid white;
-          color: white;
-          border-radius: 7px;
-          z-index:997;
+        form {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
 
-          @include mobile {
-            padding: 5px;
-            overflow: hidden;
-          }
+            input,
+            textarea {
+                width: 100%;
+                padding: 20px;
+                background: $card-bg;
+                backdrop-filter: blur(10px);
+                border: 1px solid $border-color;
+                border-radius: 12px;
+                color: $text-primary;
+                font-size: 16px;
+                font-family: 'Inter', sans-serif;
+                transition: all 0.3s ease;
+
+                &::placeholder {
+                    color: $text-secondary;
+                    opacity: 0.7;
+                }
+
+                &:focus {
+                    outline: none;
+                    border-color: $accent-color;
+                    background: rgba(255, 255, 255, 0.08);
+                    box-shadow: 0 0 20px rgba(0, 217, 255, 0.1);
+                }
+
+                @include mobile {
+                    padding: 15px;
+                    font-size: 14px;
+                }
+            }
+
+            textarea {
+                resize: vertical;
+                min-height: 150px;
+            }
+
+            button {
+                padding: 20px 40px;
+                background: $accent-gradient;
+                border: none;
+                border-radius: 50px;
+                color: white;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+
+                &:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+                }
+
+                &:active {
+                    transform: translateY(-1px);
+                }
+
+                @include mobile {
+                    padding: 15px 30px;
+                    font-size: 16px;
+                }
+            }
+
+            // Success and Error messages
+            &:has(+ span) {
+                margin-bottom: 20px;
+            }
+
+            +span {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+
+                &:contains("Success") {
+                    color: #4ade80;
+                }
+
+                &:contains("Error") {
+                    color: #f87171;
+                }
+            }
         }
-
-        button {
-          padding: 15px;
-          border: none;
-          background-color: #c2daf5;
-          cursor: pointer;
-          font-weight: 500;
-          font-size: 20px;
-          border-radius: 7px;
-          z-index:997;
-
-          @include mobile {
-            padding: 5px;
-            font-size: 15px;
-            overflow: hidden;
-          }
-        }
-      }
     }
-  }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

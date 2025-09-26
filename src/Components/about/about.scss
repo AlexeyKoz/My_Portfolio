@@ -1,0 +1,314 @@
+@import "../../app.scss";
+
+.about {
+    height: 100vh;
+    background: $primary-dark;
+    position: relative;
+    overflow: hidden;
+
+    // Animated background gradient
+    &::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+        animation: pulse 10s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px 60px;
+        position: relative;
+        z-index: 1;
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+
+        // Custom scrollbar for the container
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.5);
+        }
+
+        @include mobile {
+            padding: 30px 15px 50px;
+        }
+    }
+
+    .content {
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+
+            .title {
+                font-size: 48px;
+                font-weight: 700;
+                background: $accent-gradient;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 20px;
+
+                @include mobile {
+                    font-size: 36px;
+                }
+            }
+
+            .title-underline {
+                width: 100px;
+                height: 4px;
+                background: $accent-gradient;
+                margin: 0 auto;
+                border-radius: 2px;
+            }
+        }
+
+        .summary-card {
+            background: $card-bg;
+            backdrop-filter: blur(10px);
+            border: 1px solid $border-color;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+
+            .summary-text {
+                font-size: 18px;
+                line-height: 1.8;
+                color: $text-secondary;
+                max-width: 800px;
+                margin: 0 auto;
+
+                @include mobile {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+
+            @include tablet {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 28px;
+                font-weight: 600;
+                margin-bottom: 25px;
+                color: $text-primary;
+                position: relative;
+                padding-left: 15px;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 4px;
+                    height: 24px;
+                    background: $accent-gradient;
+                    border-radius: 2px;
+                }
+            }
+
+            .left-column {
+                .experience-card {
+                    background: $card-bg;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid $border-color;
+                    border-radius: 12px;
+                    padding: 25px;
+                    margin-bottom: 20px;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        border-color: rgba(102, 126, 234, 0.3);
+                        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.1);
+                    }
+
+                    .job-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+
+                        h3 {
+                            font-size: 20px;
+                            font-weight: 600;
+                            color: $accent-color;
+                        }
+
+                        .period {
+                            font-size: 14px;
+                            color: $text-secondary;
+                        }
+                    }
+
+                    .company {
+                        font-size: 16px;
+                        color: $text-secondary;
+                        margin-bottom: 15px;
+                        font-weight: 500;
+                    }
+
+                    .highlights {
+                        li {
+                            color: $text-secondary;
+                            margin-bottom: 8px;
+                            padding-left: 20px;
+                            position: relative;
+                            line-height: 1.6;
+
+                            &::before {
+                                content: "▸";
+                                position: absolute;
+                                left: 0;
+                                color: $accent-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right-column {
+                .skills-grid {
+                    margin-bottom: 40px;
+
+                    .skill-category {
+                        background: $card-bg;
+                        backdrop-filter: blur(10px);
+                        border: 1px solid $border-color;
+                        border-radius: 12px;
+                        padding: 20px;
+                        margin-bottom: 20px;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            border-color: rgba(102, 126, 234, 0.3);
+                            transform: translateY(-2px);
+                        }
+
+                        h3 {
+                            font-size: 18px;
+                            font-weight: 600;
+                            color: $accent-color;
+                            margin-bottom: 15px;
+                        }
+
+                        .skill-tags {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 8px;
+
+                            .skill-tag {
+                                background: rgba(102, 126, 234, 0.1);
+                                color: $text-primary;
+                                padding: 6px 12px;
+                                border-radius: 20px;
+                                font-size: 13px;
+                                border: 1px solid rgba(102, 126, 234, 0.2);
+                                transition: all 0.3s ease;
+
+                                &:hover {
+                                    background: rgba(102, 126, 234, 0.2);
+                                    border-color: rgba(102, 126, 234, 0.4);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .education-list {
+                    margin-bottom: 40px;
+
+                    .education-item {
+                        background: $card-bg;
+                        backdrop-filter: blur(10px);
+                        border: 1px solid $border-color;
+                        border-radius: 12px;
+                        padding: 20px;
+                        margin-bottom: 15px;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            border-color: rgba(102, 126, 234, 0.3);
+                        }
+
+                        h3 {
+                            font-size: 18px;
+                            font-weight: 600;
+                            color: $accent-color;
+                            margin-bottom: 8px;
+                        }
+
+                        .school {
+                            font-size: 14px;
+                            color: $text-secondary;
+                            margin-bottom: 5px;
+                        }
+
+                        .tech {
+                            font-size: 13px;
+                            color: $text-secondary;
+                            font-style: italic;
+                        }
+                    }
+                }
+
+                .language-tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 12px;
+
+                    .language-tag {
+                        background: $card-bg;
+                        backdrop-filter: blur(10px);
+                        border: 1px solid $border-color;
+                        color: $text-primary;
+                        padding: 10px 16px;
+                        border-radius: 8px;
+                        font-size: 14px;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            border-color: rgba(102, 126, 234, 0.3);
+                            transform: translateY(-2px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

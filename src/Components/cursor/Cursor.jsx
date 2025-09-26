@@ -3,31 +3,38 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const Cursor = () => {
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(false);
 
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+    useEffect(() => {
+        // Check if device is mobile
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 738);
+        };
 
-  useEffect(() => {
-    const mouseMove = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
 
-    window.addEventListener("mousemove", mouseMove);
+        const mouseMove = (e) => {
+            setPosition({ x: e.clientX, y: e.clientY });
+        };
 
-    return () => {
-      window.removeEventListener("mousemove", mouseMove);
-    };
+        window.addEventListener("mousemove", mouseMove);
 
-  }, []);
+        return () => {
+            window.removeEventListener("mousemove", mouseMove);
+            window.removeEventListener('resize', checkMobile);
+        };
+    }, []);
 
+    // Don't render cursor on mobile
+    if (isMobile) return null;
 
-  console.log(position);
+    return (
+        <motion.div className="cursor" animate={{ x: position.x + 10, y: position.y + 10 }}>
 
-
-  return (
-    <motion.div className="cursor" animate={{ x: position.x + 10, y: position.y + 10 }}>
-
-    </motion.div>
-  );
+        </motion.div>
+    );
 };
 
 
